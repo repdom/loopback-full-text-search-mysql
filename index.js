@@ -9,11 +9,11 @@ module.exports = function(app, options) {
         let search = {};
         if (query && query.q) {
           if (model.fields.length === 1) {
-            search = {[model.fields[0]]: {ilike: `%${query.q}%`}};
+            search = {[model.fields[0]]: {like: `%${query.q}%`}};
           } else {
             let searches = [];
             model.fields.map(field => {
-              searches.push({[field]: {ilike: `%${query.q}%`}});
+              searches.push({[field]: {like: `%${query.q}%`}});
             });
             search = {or: searches};
           }
